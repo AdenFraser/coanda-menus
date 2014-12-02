@@ -13,7 +13,7 @@
 	},
 	"autoload": {
 		"psr-0": {
-			"AdenFraser\\CoandaMenus\\": "src/"
+			"CoandaCMS\\CoandaMenus\\": "src/"
 		}
 	},
 	"minimum-stability": "stable"
