@@ -1,3 +1,3 @@
 Coanda Menus
 ============
-A menu module for Coanda
+A menu module for CoandaCMS
