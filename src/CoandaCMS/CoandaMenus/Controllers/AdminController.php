@@ -51,14 +51,14 @@ class AdminController extends \CoandaCMS\Coanda\Controllers\BaseController {
     {
         Coanda::checkAccess('menus', 'manage');
 
-        return View::make('menus.admin.index', ['menus' => $this->menu->paginate(20) ]);
+        return View::make('coanda-menus::menus.admin.index', ['menus' => $this->menu->paginate(20) ]);
     }
 
     public function getAddMenu()
     {
         Coanda::checkAccess('menus', 'manage');
 
-        return View::make('menus.admin.addmenu', [ 'invalid_fields' => Session::get('invalid_fields', []) ]);
+        return View::make('coanda-menus::menus.admin.addmenu', [ 'invalid_fields' => Session::get('invalid_fields', []) ]);
     }
 
     /**
@@ -89,7 +89,7 @@ class AdminController extends \CoandaCMS\Coanda\Controllers\BaseController {
 
         $menu = $this->__getMenu($menu_id);
 
-        return View::make('menus.admin.editmenu', [ 'menu' => $menu, 'invalid_fields' => Session::get('invalid_fields', []) ]);
+        return View::make('coanda-menus::menus.admin.editmenu', [ 'menu' => $menu, 'invalid_fields' => Session::get('invalid_fields', []) ]);
     }
 
     /**
@@ -123,7 +123,7 @@ class AdminController extends \CoandaCMS\Coanda\Controllers\BaseController {
 
         $menu = $this->__getMenu($menu_id);
 
-        return View::make('menus.admin.removemenu', ['menu' => $menu ]);
+        return View::make('coanda-menus::menus.admin.removemenu', ['menu' => $menu ]);
     }
    
     /**
@@ -148,7 +148,7 @@ class AdminController extends \CoandaCMS\Coanda\Controllers\BaseController {
 
         $menu = $this->__getMenu($menu_id);
 
-        return View::make('menus.admin.viewmenu', ['menu' => $menu, 'menus' => $menu->items()->paginate(10) ]);
+        return View::make('coanda-menus::menus.admin.viewmenu', ['menu' => $menu, 'menus' => $menu->items()->paginate(10) ]);
     }
   
     /**
@@ -200,7 +200,7 @@ class AdminController extends \CoandaCMS\Coanda\Controllers\BaseController {
 
         $menu = $this->__getMenu($menu_id);
 
-        return View::make('menus.admin.add', [ 'menu' => $menu, 'invalid_fields' => Session::get('invalid_fields', []) ]);
+        return View::make('coanda-menus::menus.admin.add', [ 'menu' => $menu, 'invalid_fields' => Session::get('invalid_fields', []) ]);
     }
     
     /**
@@ -224,7 +224,7 @@ class AdminController extends \CoandaCMS\Coanda\Controllers\BaseController {
             $remove_menus[] = $this->menuitem->find($remove_menu_id);
         }
 
-        return View::make('menus.admin.removemultiple', [ 'menu' => $menu, 'remove_menus' => $remove_menus ]);
+        return View::make('coanda-menus::menus.admin.removemultiple', [ 'menu' => $menu, 'remove_menus' => $remove_menus ]);
     }
   
     /**
@@ -284,7 +284,7 @@ class AdminController extends \CoandaCMS\Coanda\Controllers\BaseController {
 
         $menu_item = $this->__getMenuItem($menu_id);
 
-        return View::make('menus.admin.edit', [ 'menu_item' => $menu_item, 'invalid_fields' => Session::get('invalid_fields', []) ]);
+        return View::make('coanda-menus::menus.admin.edit', [ 'menu_item' => $menu_item, 'invalid_fields' => Session::get('invalid_fields', []) ]);
     }
  
     /**
@@ -318,7 +318,7 @@ class AdminController extends \CoandaCMS\Coanda\Controllers\BaseController {
 
         $menu_item = $this->__getMenuItem($menu_id);
 
-        return View::make('menus.admin.remove', [ 'menu_item' => $menu_item ]);
+        return View::make('coanda-menus::menus.admin.remove', [ 'menu_item' => $menu_item ]);
     }
     
     /**
@@ -345,6 +345,6 @@ class AdminController extends \CoandaCMS\Coanda\Controllers\BaseController {
 
         $menu_item = $this->__getMenuItem($menu_id);
 
-        return View::make('menus.admin.view', [ 'menu_item' => $menu_item ]);
+        return View::make('coanda-menus::menus.admin.view', [ 'menu_item' => $menu_item ]);
     }
 }

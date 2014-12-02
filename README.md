@@ -15,6 +15,10 @@ Then
 		composer update
 
 
-Finally add
+Then add
 		CoandaCMS\CoandaMenus\CoandaMenusServiceProvider
 To the providers section of your \config\app.php file
+
+Finally add
+		CoandaCMS\CoandaMenus\MenusModuleProvider
+To the enabled_modules section of your CoandaCMS Config file
