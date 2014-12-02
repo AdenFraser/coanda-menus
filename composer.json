@@ -1,0 +1,20 @@
+{
+	"name": "AdenFraser/coanda-menus",
+	"description": "A Menu control module for Coanda CMS",
+	"authors": [
+		{
+			"name": "Aden Fraser",
+			"email": "aden@fraserjilani.com"
+		}
+	],
+	"require": {
+		"php": ">=5.4.0",
+		"coandacms/coanda-core": "dev-master"
+	},
+	"autoload": {
+		"psr-0": {
+			"AdenFraser\\CoandaMenus\\": "src/"
+		}
+	},
+	"minimum-stability": "stable"
+}
