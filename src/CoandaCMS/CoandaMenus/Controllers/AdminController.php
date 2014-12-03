@@ -1,6 +1,12 @@
 <?php namespace CoandaCMS\CoandaMenus\Controllers;
 
-use View, Redirect, App, Coanda, Input, Session, Event;
+use View;
+use Redirect;
+use App;
+use Coanda;
+use Input;
+use Session;
+use Event;
 
 use CoandaCMS\Coanda\Exceptions\ValidationException;
 

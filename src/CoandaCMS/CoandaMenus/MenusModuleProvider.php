@@ -52,7 +52,7 @@ class MenusModuleProvider implements \CoandaCMS\Coanda\CoandaModuleProvider {
      * @param $permission
      * @param $parameters
      * @param $user_permissions
-     * @return bool
+     * @return boolean|null
      * @throws PermissionDenied
      */
     public function checkAccess($permission, $parameters, $user_permissions)

@@ -1,10 +1,8 @@
 <?php namespace CoandaCMS\CoandaMenus\Models;
 
 use Eloquent;
-use Input;
 use Coanda;
 use CoandaCMS\Coanda\Exceptions\ValidationException;
-use CoandaCMS\Coanda\Pages\PageManager;
 
 class MenuItem extends Eloquent {
 
@@ -61,7 +59,7 @@ class MenuItem extends Eloquent {
     /**
      * @param $menu_id
      * @param $data
-     * @return object
+     * @return MenuItem
      */
     public static function validateAndCreate($menu_id, $data)
     {
