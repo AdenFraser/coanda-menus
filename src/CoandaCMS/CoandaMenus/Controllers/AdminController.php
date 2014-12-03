@@ -255,8 +255,6 @@ class AdminController extends \CoandaCMS\Coanda\Controllers\BaseController {
         }
 
         return Redirect::to(Coanda::adminUrl('menus/view-menu/' . $menu->id))->with('menus_removed', true);
-
-        dd(Input::all());
     }
 
     /**
