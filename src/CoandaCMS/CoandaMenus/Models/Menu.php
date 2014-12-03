@@ -39,8 +39,7 @@ class Menu extends Eloquent {
      */
     public static function validateAndCreate($data)
     {
-        Menu::validateInput($data);
-
+        $data = Menu::validateInput($data);
         $menu = Menu::create($data);
 
         return $menu;
@@ -57,20 +56,6 @@ class Menu extends Eloquent {
         $this->identifier = $this->createIdentifier($data);
         $this->save();
     }
-    
-    /**
-     * @param $data
-     * @return string
-     */
-    public function createIdentifier($data)
-    {
-        if (!isset($data['identifier']) || $data['identifier'] == '')
-        {
-            return Slugifier::convert($data['name']);
-        }
-
-        return $data['identifier'];
-    }
 
     /**
      * @param $data
@@ -85,10 +70,17 @@ class Menu extends Eloquent {
             $invalid_fields['name'] = 'Please enter a name';
         }
 
+        if (!isset($data['identifier']) || $data['identifier'] == '')
+        {
+            $data['identifier'] = Slugifier::convert($data['name']);
+        }
+
         if (count($invalid_fields) > 0)
         {
             throw new ValidationException($invalid_fields);
         }
+
+        return $data;
     }
 
 }
