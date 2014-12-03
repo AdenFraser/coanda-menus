@@ -6,8 +6,6 @@ use App;
 use Coanda;
 use Input;
 use Session;
-use Event;
-
 use CoandaCMS\Coanda\Exceptions\ValidationException;
 
 class AdminController extends \CoandaCMS\Coanda\Controllers\BaseController {
@@ -16,7 +14,9 @@ class AdminController extends \CoandaCMS\Coanda\Controllers\BaseController {
     private $menuitem;
 
     public function __construct(\CoandaCMS\CoandaMenus\Models\Menu $menu, \CoandaCMS\CoandaMenus\Models\MenuItem $menuitem)
-    {
+    {       
+        Coanda::checkAccess('menus', 'manage');
+
         $this->menu = $menu;
         $this->menuitem = $menuitem;
     }
@@ -55,15 +55,11 @@ class AdminController extends \CoandaCMS\Coanda\Controllers\BaseController {
 
     public function getIndex()
     {
-        Coanda::checkAccess('menus', 'manage');
-
         return View::make('coanda-menus::menus.admin.index', ['menus' => $this->menu->paginate(20) ]);
     }
 
     public function getAddMenu()
     {
-        Coanda::checkAccess('menus', 'manage');
-
         return View::make('coanda-menus::menus.admin.addmenu', [ 'invalid_fields' => Session::get('invalid_fields', []) ]);
     }
 
@@ -72,8 +68,6 @@ class AdminController extends \CoandaCMS\Coanda\Controllers\BaseController {
      */
     public function postAddMenu()
     {
-        Coanda::checkAccess('menus', 'manage');
-
         try
         {
             $this->menu->validateAndCreate(Input::all());
@@ -91,8 +85,6 @@ class AdminController extends \CoandaCMS\Coanda\Controllers\BaseController {
      */
     public function getEditMenu($menu_id)
     {
-        Coanda::checkAccess('menus', 'manage');
-
         $menu = $this->__getMenu($menu_id);
 
         return View::make('coanda-menus::menus.admin.editmenu', [ 'menu' => $menu, 'invalid_fields' => Session::get('invalid_fields', []) ]);
@@ -104,8 +96,6 @@ class AdminController extends \CoandaCMS\Coanda\Controllers\BaseController {
      */
     public function postEditMenu($menu_id)
     {
-        Coanda::checkAccess('menus', 'manage');
-
         $menu = $this->__getMenu($menu_id);
 
         try
@@ -125,8 +115,6 @@ class AdminController extends \CoandaCMS\Coanda\Controllers\BaseController {
      */
     public function getRemoveMenu($menu_id)
     {
-        Coanda::checkAccess('menus', 'manage');
-
         $menu = $this->__getMenu($menu_id);
 
         return View::make('coanda-menus::menus.admin.removemenu', ['menu' => $menu ]);
@@ -137,8 +125,6 @@ class AdminController extends \CoandaCMS\Coanda\Controllers\BaseController {
      */
     public function postRemoveMenu($menu_id)
     {
-        Coanda::checkAccess('menus', 'manage');
-
         $menu = $this->__getMenu($menu_id);
         $menu->delete();
 
@@ -150,8 +136,6 @@ class AdminController extends \CoandaCMS\Coanda\Controllers\BaseController {
      */
     public function getViewMenu($menu_id)
     {
-        Coanda::checkAccess('menus', 'manage');
-
         $menu = $this->__getMenu($menu_id);
 
         return View::make('coanda-menus::menus.admin.viewmenu', ['menu' => $menu, 'menus' => $menu->items()->paginate(10) ]);
@@ -162,8 +146,6 @@ class AdminController extends \CoandaCMS\Coanda\Controllers\BaseController {
      */
     public function postViewMenu($menu_id)
     {
-        Coanda::checkAccess('menus', 'manage');
-
         $menu = $this->__getMenu($menu_id);
 
         if (Input::has('update_order') && Input::get('update_order') == 'true')
@@ -202,8 +184,6 @@ class AdminController extends \CoandaCMS\Coanda\Controllers\BaseController {
      */
     public function getAdd($menu_id)
     {
-        Coanda::checkAccess('menus', 'manage');
-
         $menu = $this->__getMenu($menu_id);
 
         return View::make('coanda-menus::menus.admin.add', [ 'menu' => $menu, 'invalid_fields' => Session::get('invalid_fields', []) ]);
@@ -214,8 +194,6 @@ class AdminController extends \CoandaCMS\Coanda\Controllers\BaseController {
      */
     public function getRemoveMultiple($menu_id)
     {
-        Coanda::checkAccess('menus', 'manage');
-
         $menu = $this->__getMenu($menu_id);
         $remove_menu_ids = Session::get('remove_menu_ids', []);
         $remove_menus = [];
@@ -238,8 +216,6 @@ class AdminController extends \CoandaCMS\Coanda\Controllers\BaseController {
      */
     public function postRemoveMultiple($menu_id)
     {
-        Coanda::checkAccess('menus', 'manage');
-
         $menu = $this->__getMenu($menu_id);
 
         $remove_menu_ids = Input::get('remove_menu_ids', []);
@@ -263,8 +239,6 @@ class AdminController extends \CoandaCMS\Coanda\Controllers\BaseController {
      */
     public function postAdd($menu_id)
     {
-        Coanda::checkAccess('menus', 'manage');
-
         $menu = $this->__getMenu($menu_id);
 
         try
@@ -284,8 +258,6 @@ class AdminController extends \CoandaCMS\Coanda\Controllers\BaseController {
      */
     public function getEdit($menu_id)
     {
-        Coanda::checkAccess('menus', 'manage');
-
         $menu_item = $this->__getMenuItem($menu_id);
 
         return View::make('coanda-menus::menus.admin.edit', [ 'menu_item' => $menu_item, 'invalid_fields' => Session::get('invalid_fields', []) ]);
@@ -297,8 +269,6 @@ class AdminController extends \CoandaCMS\Coanda\Controllers\BaseController {
      */
     public function postEdit($menu_id)
     {
-        Coanda::checkAccess('menus', 'manage');
-
         $menu = $this->__getMenuItem($menu_id);
 
         try
@@ -318,8 +288,6 @@ class AdminController extends \CoandaCMS\Coanda\Controllers\BaseController {
      */
     public function getRemove($menu_id)
     {
-        Coanda::checkAccess('menus', 'manage');
-
         $menu_item = $this->__getMenuItem($menu_id);
 
         return View::make('coanda-menus::menus.admin.remove', [ 'menu_item' => $menu_item ]);
@@ -330,8 +298,6 @@ class AdminController extends \CoandaCMS\Coanda\Controllers\BaseController {
      */
     public function postRemove($menu_id)
     {
-        Coanda::checkAccess('menus', 'manage');
-
         $menu = $this->__getMenuItem($menu_id);
         $menu_id = $menu->menu->id;
 
@@ -345,8 +311,6 @@ class AdminController extends \CoandaCMS\Coanda\Controllers\BaseController {
      */
     public function getView($menu_id)
     {
-        Coanda::checkAccess('menus', 'manage');
-
         $menu_item = $this->__getMenuItem($menu_id);
 
         return View::make('coanda-menus::menus.admin.view', [ 'menu_item' => $menu_item ]);
