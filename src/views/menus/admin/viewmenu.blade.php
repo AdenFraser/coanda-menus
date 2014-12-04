@@ -72,19 +72,26 @@
 						@if ($menus->count() > 0)
 							<ol class='nested_with_switch sortable-menu vertical'>
 								@foreach ($menus as $menu)
-									<li>
-										<i class="fa fa-arrows"></i>
-										<input type="checkbox" name="remove_menu_ids[]" value="{{ $menu->id }}">
-										<a href="{{ Coanda::adminUrl('menus/view/' . $menu->id) }}">{{ $menu->name }}</a>
-										{{ Form::text('ordering[' . $menu->id . ']', $menu->order, ['class' => 'form-control input-sm', 'style' => 'width: 50px;']) }}
-										<a href="{{ Coanda::adminUrl('menus/edit/' . $menu->id) }}"><i class="fa fa-pencil-square-o"></i></a>
-										<a href="{{ Coanda::adminUrl('menus/remove/' . $menu->id) }}"><i class="fa fa-minus-circle"></i></a>
+									<li data-id="{{ $menu->id }}">
+										<div class="menu-item">
+											<i class="fa fa-arrows"></i>
+											<input type="checkbox" name="remove_menu_ids[]" value="{{ $menu->id }}">
+											<a href="{{ Coanda::adminUrl('menus/view/' . $menu->id) }}">{{ $menu->name }}</a>
+											<span class="pull-right">
+												<a href="{{ Coanda::adminUrl('menus/edit/' . $menu->id) }}"><i class="fa fa-pencil-square-o"></i></a>
+												<a href="{{ Coanda::adminUrl('menus/remove/' . $menu->id) }}"><i class="fa fa-minus-circle"></i></a>
+											</span>
+										</div>
 										<ol>
+										
+
 
 										</ol>
 									</li>
 								@endforeach
 							</ol>
+
+							{{ Form::hidden('overall_menu_order', '', ['class' => 'overall_menu_order'])}}
 
 							{{ $menus->links() }}
 						@else
@@ -121,15 +128,19 @@
 }
 ol.vertical {
     margin: 0 0 9px;
+    padding: 0;
     min-height: 10px;
 }
 ol.vertical li {
-    background: none repeat scroll 0 0 #eeeeee;
-    border: 1px solid #cccccc;
+    background: none;
+    border: 0;
     color: #0088cc;
     display: block;
     margin: 5px;
-    padding: 5px;
+    padding:0;
+}
+ol.vertical li .menu-item {
+	border: 1px solid #ccc;
 }
 ol.vertical li.placeholder {
     border: medium none;
@@ -168,10 +179,12 @@ ol li.highlight i.icon-move {
     background-image: url("../img/glyphicons-halflings-white.png");
 }
 ol.nested_with_switch, ol.nested_with_switch ol {
-    border: 1px solid #eeeeee;
+	margin-top: 5px;
+    border: 0;
 }
 ol.nested_with_switch.active, ol.nested_with_switch ol.active {
-    border: 1px solid #333333;
+	margin-top: 5px;
+    border: 0;
 }
 ol.nested_with_switch li, ol.simple_with_animation li, ol.serialization li, ol.default li {
     cursor: pointer;
