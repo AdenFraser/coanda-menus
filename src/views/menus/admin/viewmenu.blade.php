@@ -109,4 +109,10 @@
 	</div>
 </div>
 
+@section('custom-js')
+	<script src="{{ asset('packages/adenfraser/coanda-menus/js/jquery.sortable.js') }}"></script>
+	<script src="{{ asset('packages/adenfraser/coanda-menus/js/coanda-menus-scripts.js') }}"></script>
+@append
+
 @stop
+
