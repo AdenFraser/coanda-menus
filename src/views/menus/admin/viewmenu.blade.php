@@ -189,6 +189,9 @@ ol.nested_with_switch.active, ol.nested_with_switch ol.active {
 ol.nested_with_switch li, ol.simple_with_animation li, ol.serialization li, ol.default li {
     cursor: pointer;
 }
+ol.nested_with_switch li ol li, ol.simple_with_animation li ol li, ol.serialization li ol li, ol.default li ol li {
+	margin-right: 0;
+}
 ol.simple_with_animation {
     border: 1px solid #999999;
 }
