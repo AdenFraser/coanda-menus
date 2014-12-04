@@ -1,4 +1,4 @@
-<?php namespace CoandaCMS\CoandaMenus\Models;
+<?php namespace AdenFraser\CoandaMenus\Models;
 
 use Eloquent;
 use CoandaCMS\Coanda\Exceptions\ValidationException;
@@ -30,7 +30,7 @@ class Menu extends Eloquent {
 
     public function items()
     {
-        return $this->hasMany('CoandaCMS\CoandaMenus\Models\MenuItem')->orderBy('order', 'asc');
+        return $this->hasMany('AdenFraser\CoandaMenus\Models\MenuItem')->orderBy('order', 'asc');
     }
 
     /**

@@ -1,4 +1,4 @@
-<?php namespace CoandaCMS\CoandaMenus;
+<?php namespace AdenFraser\CoandaMenus;
 
 use Illuminate\Support\ServiceProvider;
 

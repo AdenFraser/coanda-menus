@@ -1,8 +1,8 @@
-<?php namespace CoandaCMS\CoandaMenus\Models;
+<?php namespace AdenFraser\CoandaMenus\Models;
 
 use Eloquent;
 use Coanda;
-use CoandaCMS\Coanda\Exceptions\ValidationException;
+use AdenFraser\Coanda\Exceptions\ValidationException;
 
 class MenuItem extends Eloquent {
 
@@ -24,7 +24,7 @@ class MenuItem extends Eloquent {
 
     public function menu()
     {
-        return $this->belongsTo('CoandaCMS\CoandaMenus\Models\Menu', 'menu_id');
+        return $this->belongsTo('AdenFraser\CoandaMenus\Models\Menu', 'menu_id');
     }
 
     /**

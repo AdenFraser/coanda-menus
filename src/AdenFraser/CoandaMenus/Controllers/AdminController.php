@@ -1,4 +1,4 @@
-<?php namespace CoandaCMS\CoandaMenus\Controllers;
+<?php namespace AdenFraser\CoandaMenus\Controllers;
 
 use View;
 use Redirect;
@@ -13,7 +13,7 @@ class AdminController extends \CoandaCMS\Coanda\Controllers\BaseController {
     private $menu;
     private $menuitem;
 
-    public function __construct(\CoandaCMS\CoandaMenus\Models\Menu $menu, \CoandaCMS\CoandaMenus\Models\MenuItem $menuitem)
+    public function __construct(\AdenFraser\CoandaMenus\Models\Menu $menu, \AdenFraser\CoandaMenus\Models\MenuItem $menuitem)
     {       
         Coanda::checkAccess('menus', 'manage');
 

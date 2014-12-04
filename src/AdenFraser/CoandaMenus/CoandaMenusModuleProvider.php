@@ -1,8 +1,8 @@
-<?php namespace CoandaCMS\CoandaMenus;
+<?php namespace AdenFraser\CoandaMenus;
 
 use Illuminate\Support\Collection;
 use Route;
-use CoandaCMS\CoandaMenus\Models\Menu;
+use AdenFraser\CoandaMenus\Models\Menu;
 
 class MenusModuleProvider implements \CoandaCMS\Coanda\CoandaModuleProvider {
 
@@ -30,7 +30,7 @@ class MenusModuleProvider implements \CoandaCMS\Coanda\CoandaModuleProvider {
     public function adminRoutes()
     {
         // Load the media controller
-        Route::controller('menus', 'CoandaCMS\CoandaMenus\Controllers\AdminController');
+        Route::controller('menus', 'AdenFraser\CoandaMenus\Controllers\AdminController');
     }
 
     /**
