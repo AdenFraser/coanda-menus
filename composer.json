@@ -17,7 +17,7 @@
             "src/migrations"
         ],
         "psr-0": {
-            "\\AdenFraser/CoandaMenus\\": "src/"
+            "AdenFraser\\CoandaMenus": "src/"
         }
     },
     "minimum-stability": "stable"
