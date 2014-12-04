@@ -4,7 +4,7 @@ use Illuminate\Support\Collection;
 use Route;
 use AdenFraser\CoandaMenus\Models\Menu;
 
-class MenusModuleProvider implements \CoandaCMS\Coanda\CoandaModuleProvider {
+class CoandaMenusModuleProvider implements \CoandaCMS\Coanda\CoandaModuleProvider {
 
     /**
      * @var string
