@@ -57,6 +57,25 @@ class MenuItem extends Eloquent {
     }
 
     /**
+     * Updates an individual menu items order in the database,
+     * before proceeding to update any children
+     * @param integer $new_order
+     * @param integer $parent_id
+     * @param object $item
+     */
+    public function updateItemOrder($new_order, $parent_id, $item)
+    {
+        $this->order = $new_order;
+        $this->parent_id = $parent_id;
+        $this->save();
+
+        if(count($item->children) > 0 && !empty($item->children[0])) 
+        {
+            Menu::updateOrder($item->children[0], $item->id);
+        }
+    }
+
+    /**
      * @param $menu_id
      * @param $data
      * @return MenuItem
