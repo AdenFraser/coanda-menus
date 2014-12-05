@@ -71,6 +71,8 @@
 
 						@if ($menus->count() > 0)
 
+						<div class="menu-order-container">
+
 							<ol class='nested_with_switch sortable-menu vertical'>
 
 								{{ $ordered_items->htmlList() }}
@@ -97,13 +99,13 @@
 									</li>
 								@endforeach--}}
 							</ol>
-
+						</div>
+					
 							{{ Form::hidden('overall_menu_order', '', ['class' => 'overall_menu_order'])}}
-
-							{{ $menus->links() }}
 						@else
 							<p>No menu items have been added to this menu yet.</p>
 						@endif
+	
 
 						<div class="buttons">
 							{{ Form::button('Remove selected', ['name' => 'remove_selected', 'value' => 'true', 'type' => 'submit', 'class' => 'btn btn-default']) }}
@@ -111,6 +113,7 @@
 						</div>
 
 					{{ Form::close() }}
+
 
 				</div>
 			</div>
@@ -123,15 +126,22 @@
 	<script src="{{ asset('packages/adenfraser/coanda-menus/js/coanda-menus-scripts.js') }}"></script>
 
 	<style>
-	body.dragging, body.dragging *
-	{
-		cursor: move !important;
-	}
-	.dragged {
-    opacity: 0.5;
-    position: absolute;
-    top: 0;
-    z-index: 2000;
+body.dragging, body.dragging *
+{
+	cursor: move !important;
+}
+.dragged {
+	opacity: 0.5;
+	position: absolute;
+	top: 0;
+	z-index: 2000;
+}
+.menu-order-container {
+	border: 1px solid #ccc;
+	background: #eee;
+	border-radius: 5px;
+	padding: 10px;
+	margin-bottom: 10px;
 }
 ol.vertical {
     margin: 0 0 9px;
@@ -147,7 +157,23 @@ ol.vertical li {
     padding:0;
 }
 ol.vertical li .menu-item {
-	border: 1px solid #ccc;
+	background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    line-height: 23px;
+    margin-left: 20px;
+    padding: 5px 10px 5px 0;
+}
+ol.vertical li .menu-item .fa.fa-arrows {
+    left: -25px;
+    position: relative;
+    opacity: 0;
+}
+ol.vertical li:hover > .menu-item > .fa.fa-arrows {
+	opacity: 1;
+}
+ol.vertical li .menu-item a {
+	padding-left: 5px;
 }
 ol.vertical li.placeholder {
     border: medium none;

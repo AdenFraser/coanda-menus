@@ -2,7 +2,7 @@
 
 use Eloquent;
 use Coanda;
-use AdenFraser\Coanda\Exceptions\ValidationException;
+use CoandaCMS\Coanda\Exceptions\ValidationException;
 
 class MenuItem extends Eloquent {
 

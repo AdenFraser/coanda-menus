@@ -2,7 +2,6 @@
 
 use Eloquent;
 use Coanda;
-use AdenFraser\Coanda\Exceptions\ValidationException;
 
 class MenuItemsHelper {
 
@@ -81,10 +80,6 @@ class MenuItemsHelper {
 					<i class="fa fa-arrows"></i>
 					<input type="checkbox" name="remove_menu_ids[]" value="'.$v->id.'">
 					<a href="'.Coanda::adminUrl('menus/view/' . $v->id).'">'.$v->name.'</a>
-
-					Order : '.$v->order.' /
-					Parent_id : '.$v->parent_id.'
-
 					<span class="pull-right">
 						<a href="'.Coanda::adminUrl('menus/edit/' . $v->id).'"><i class="fa fa-pencil-square-o"></i></a>
 						<a href="'.Coanda::adminUrl('menus/remove/' . $v->id).'"><i class="fa fa-minus-circle"></i></a>
