@@ -13,10 +13,16 @@ class MenuItemsHelper {
 	  	$this->items = $items;
 	}
 
+	/**
+	 * @return string Returns the HTML string of our Sortable Menu
+	 */
 	public function htmlList() {
 	 	return $this->htmlFromArray($this->itemArray());
 	}
 
+	/**
+	 * @return array
+	 */
 	public function itemArray()
 	{
 		$result = [];
@@ -29,6 +35,10 @@ class MenuItemsHelper {
 		return $result;
 	}
 
+	/**
+	 * @param  object $item
+	 * @return array
+	 */
 	private function childrenOf($item)
 	{
 	  $result = array();
@@ -40,6 +50,10 @@ class MenuItemsHelper {
 	  return $result;
 	}
 
+	/**
+	 * @param  object $item
+	 * @return array
+	 */
 	private function itemWithChildren($item)
 	{
 		$result = array();
@@ -51,6 +65,11 @@ class MenuItemsHelper {
 		return $result;
 	}
 
+	/**
+	 * Returns the HTML of our Sortable Menus
+	 * @param  array $array
+	 * @return string
+	 */
 	private function htmlFromArray($array)
 	{
 		$html = '';
