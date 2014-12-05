@@ -16,9 +16,9 @@ Then
 
 
 Then add
-		CoandaCMS\CoandaMenus\CoandaMenusServiceProvider
+		AdenFraser\CoandaMenus\CoandaMenusServiceProvider
 To the providers section of your \config\app.php file
 
 Finally add
-		CoandaCMS\CoandaMenus\MenusModuleProvider
+		AdenFraser\CoandaMenus\MenusModuleProvider
 To the enabled_modules section of your CoandaCMS Config file
