@@ -1,0 +1,89 @@
+<?php namespace AdenFraser\CoandaMenus\Models;
+
+use Eloquent;
+use Coanda;
+use AdenFraser\Coanda\Exceptions\ValidationException;
+
+class MenuItemsHelper {
+
+	private $items;
+
+	public function __construct($items)
+	{
+	  	$this->items = $items;
+	}
+
+	public function htmlList() {
+	 	return $this->htmlFromArray($this->itemArray());
+	}
+
+	public function itemArray()
+	{
+		$result = [];
+		foreach($this->items as $item) {
+			if ($item->parent_id == 0) {
+				$result[$item->id] = $item;
+				$result[$item->id]['children'] = $this->itemWithChildren($item);
+			}
+		}
+		return $result;
+	}
+
+	private function childrenOf($item)
+	{
+	  $result = array();
+		foreach($this->items as $i) {
+			if ($i->parent_id == $item->id) {
+				$result[] = $i;
+			}
+		}
+	  return $result;
+	}
+
+	private function itemWithChildren($item)
+	{
+		$result = array();
+		$children = $this->childrenOf($item);
+		foreach ($children as $child) {
+			$result[$child->id] = $child;
+			$result[$child->id]['children'] = $this->itemWithChildren($child);
+		}
+		return $result;
+	}
+
+	private function htmlFromArray($array)
+	{
+		$html = '';
+
+		foreach($array as $v) {
+
+			$html .= '<li data-id="'.$v->id.'">
+				<div class="menu-item">
+					<i class="fa fa-arrows"></i>
+					<input type="checkbox" name="remove_menu_ids[]" value="'.$v->id.'">
+					<a href="'.Coanda::adminUrl('menus/view/' . $v->id).'">'.$v->name.'</a>
+
+					Order : '.$v->order.' /
+					Parent_id : '.$v->parent_id.'
+
+					<span class="pull-right">
+						<a href="'.Coanda::adminUrl('menus/edit/' . $v->id).'"><i class="fa fa-pencil-square-o"></i></a>
+						<a href="'.Coanda::adminUrl('menus/remove/' . $v->id).'"><i class="fa fa-minus-circle"></i></a>
+					</span>
+				</div>
+				<ol>';
+
+			if(count($v->children) > 0) {
+
+				$html .= $this->htmlFromArray($v->children);
+			}
+
+
+			$html .= '</ol>
+					</li>';
+		}
+
+		return $html;
+	}
+
+}

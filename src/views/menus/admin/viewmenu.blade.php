@@ -70,8 +70,11 @@
 					{{ Form::open(['url' => Coanda::adminUrl('menus/view-menu/' . $menu->id) ]) }}
 
 						@if ($menus->count() > 0)
+
 							<ol class='nested_with_switch sortable-menu vertical'>
-								@foreach ($menus as $menu)
+
+								{{ $ordered_items->htmlList() }}
+								{{--@foreach ($ordered_items as $menu)
 									<li data-id="{{ $menu->id }}">
 										<div class="menu-item">
 											<i class="fa fa-arrows"></i>
@@ -87,10 +90,12 @@
 											</span>
 										</div>
 										<ol>
-										
+											@if (count($menu->children) > 0)
+												has children
+											@endif
 										</ol>
 									</li>
-								@endforeach
+								@endforeach--}}
 							</ol>
 
 							{{ Form::hidden('overall_menu_order', '', ['class' => 'overall_menu_order'])}}

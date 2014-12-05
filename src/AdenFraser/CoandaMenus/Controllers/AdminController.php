@@ -7,6 +7,7 @@ use Coanda;
 use Input;
 use Session;
 use CoandaCMS\Coanda\Exceptions\ValidationException;
+use AdenFraser\CoandaMenus\Models\MenuItemsHelper;
 
 class AdminController extends \CoandaCMS\Coanda\Controllers\BaseController {
 
@@ -138,7 +139,11 @@ class AdminController extends \CoandaCMS\Coanda\Controllers\BaseController {
     {
         $menu = $this->__getMenu($menu_id);
 
-        return View::make('coanda-menus::menus.admin.viewmenu', ['menu' => $menu, 'menus' => $menu->items()->paginate() ]);
+        $menu_items = $menu->items()->paginate(0);
+
+        $ordered_items = new MenuItemsHelper($menu_items); 
+
+        return View::make('coanda-menus::menus.admin.viewmenu', ['menu' => $menu, 'menus' => $menu_items, 'ordered_items' => $ordered_items] );
     }
   
     /**
