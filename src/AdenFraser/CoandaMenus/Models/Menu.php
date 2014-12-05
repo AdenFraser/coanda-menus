@@ -59,9 +59,9 @@ class Menu extends Eloquent {
 
     /**
      * @param array $ordering $ordering An array of menu item objects to order and save
-     * @param boolean|integer $parent_id 
+     * @param integer $parent_id 
      */
-    public function updateOrder($ordering, $parent_id = false)
+    public function updateOrder($ordering, $parent_id)
     {
         foreach ($ordering as $new_order => $menu_item)
         {
