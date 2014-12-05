@@ -138,7 +138,7 @@ class AdminController extends \CoandaCMS\Coanda\Controllers\BaseController {
     {
         $menu = $this->__getMenu($menu_id);
 
-        return View::make('coanda-menus::menus.admin.viewmenu', ['menu' => $menu, 'menus' => $menu->items()->paginate(10) ]);
+        return View::make('coanda-menus::menus.admin.viewmenu', ['menu' => $menu, 'menus' => $menu->items()->paginate() ]);
     }
   
     /**
@@ -150,20 +150,14 @@ class AdminController extends \CoandaCMS\Coanda\Controllers\BaseController {
 
         if (Input::has('update_order') && Input::get('update_order') == 'true')
         {
-            $ordering = Input::get('ordering', []);
+            $ordering = Input::get('overall_menu_order', []);
 
-            foreach ($ordering as $menu_id => $new_order)
+            if($ordering != '')
             {
-                $menu = $this->menuitem->find($menu_id);
+                $this->menu->updateOrder(json_decode($ordering), $parent_id = false);
 
-                if ($menu)
-                {
-                    $menu->order = $new_order;
-                    $menu->save();
-                }
+                return Redirect::to(Coanda::adminUrl('menus/view-menu/' . $menu->id))->with('orders_updated', true);
             }
-
-            return Redirect::to(Coanda::adminUrl('menus/view-menu/' . $menu->id))->with('orders_updated', true);
         }
 
         if (Input::has('remove_selected') && Input::get('remove_selected') == 'true')
