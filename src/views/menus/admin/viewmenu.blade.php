@@ -77,6 +77,10 @@
 											<i class="fa fa-arrows"></i>
 											<input type="checkbox" name="remove_menu_ids[]" value="{{ $menu->id }}">
 											<a href="{{ Coanda::adminUrl('menus/view/' . $menu->id) }}">{{ $menu->name }}</a>
+
+											Order : {{ $menu->order }} /
+											Parent_id : {{ $menu->parent_id }}
+
 											<span class="pull-right">
 												<a href="{{ Coanda::adminUrl('menus/edit/' . $menu->id) }}"><i class="fa fa-pencil-square-o"></i></a>
 												<a href="{{ Coanda::adminUrl('menus/remove/' . $menu->id) }}"><i class="fa fa-minus-circle"></i></a>
@@ -84,8 +88,6 @@
 										</div>
 										<ol>
 										
-
-
 										</ol>
 									</li>
 								@endforeach
