@@ -78,7 +78,7 @@
 
 						{{ $menus->links() }}
 					@else
-						<p>No menu item menus have been added.</p>
+						<p>No menus have been added.</p>
 					@endif
 
 				</div>

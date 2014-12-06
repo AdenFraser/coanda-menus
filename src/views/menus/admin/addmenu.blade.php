@@ -1,6 +1,6 @@
 @extends('coanda::admin.layout.main')
 
-@section('page_title', 'Add new menu item menu')
+@section('page_title', 'Add new menu')
 
 @section('content')
 
@@ -15,7 +15,7 @@
 
 <div class="row">
 	<div class="page-name col-md-12">
-		<h1 class="pull-left">Add new menu item menu</h1>
+		<h1 class="pull-left">Add new menu</h1>
 	</div>
 </div>
 

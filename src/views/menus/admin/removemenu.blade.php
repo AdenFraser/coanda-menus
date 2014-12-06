@@ -1,6 +1,6 @@
 @extends('coanda::admin.layout.main')
 
-@section('page_title', 'Remove menu item menu')
+@section('page_title', 'Remove menu')
 
 @section('content')
 
