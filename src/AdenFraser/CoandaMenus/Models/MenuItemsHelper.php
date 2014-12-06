@@ -1,6 +1,5 @@
 <?php namespace AdenFraser\CoandaMenus\Models;
 
-use Eloquent;
 use Coanda;
 
 class MenuItemsHelper {
