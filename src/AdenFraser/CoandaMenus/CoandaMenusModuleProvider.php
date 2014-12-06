@@ -86,17 +86,4 @@ class CoandaMenusModuleProvider implements \CoandaCMS\Coanda\CoandaModuleProvide
         return Collection::make([]);
     }
 
-    /**
-     * @return string Returns HTML string of Menu
-     */
-    public function output()
-    {
-        $menu = Menu::find($menu_id);
-
-        $menu_items = $menu->items()->paginate(0);
-
-        $ordered_items = new MenuItemsHelper($menu_items); 
-
-        return View::make('coanda-menus::menus.default.output_menu', ['menu' => $menu, 'menus' => $menu_items, 'ordered_items' => $ordered_items])->render();
-    }
 }
