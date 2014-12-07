@@ -89,7 +89,7 @@ class CoandaMenusModuleProvider implements \CoandaCMS\Coanda\CoandaModuleProvide
     /**
      * @return string Returns HTML string of Menu
      */
-    public function output()
+    public function output($menu_id)
     {
         $menu = Menu::find($menu_id);
 
