@@ -54,6 +54,9 @@
 								<option value=""></option>
 								@foreach (Coanda::pages()->query()->get() as $page)
 									<option @if (Input::old('page_id', $menu_item->page_id) == $page->id) selected="selected" @endif value="{{ $page->id }}">{{ $page->name }}</option>
+									@foreach (Coanda::pages()->query()->in($page->id)->get() as $sub_page)
+										<option @if (Input::old('page_id') == $sub_page->id) selected="selected" @endif value="{{ $sub_page->id }}">&nbsp;&nbsp;{{ $sub_page->name }}</option>
+									@endforeach
 								@endforeach
 							</select>
 
