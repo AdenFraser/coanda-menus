@@ -24,7 +24,15 @@
 
 <div class="row">
 	<div class="page-options col-md-12">
-		<a href="{{ Coanda::adminUrl('menus/add/' . $menu->id) }}" class="btn btn-primary">Add new menu item</a>
+		<div class="btn-group">
+			<button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+				Add new menu item <span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu" role="menu">
+				<li><a href="#">Page Link</a></li>
+				<li><a href="#">Custom Link</a></li>
+			</ul>
+		</div>
 	</div>
 </div>
 
