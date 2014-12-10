@@ -29,8 +29,8 @@
 				Add new menu item <span class="caret"></span>
 			</button>
 			<ul class="dropdown-menu" role="menu">
-				<li><a href="#">Page Link</a></li>
-				<li><a href="#">Custom Link</a></li>
+				<li><a href="#" data-toggle="modal" data-target=".modal-page">Page Link</a></li>
+				<li><a href="#" data-toggle="modal" data-target=".modal-custom">Custom Link</a></li>
 			</ul>
 		</div>
 	</div>
@@ -84,28 +84,7 @@
 							<ol class='nested_with_switch sortable-menu vertical'>
 
 								{{ $ordered_items->htmlList() }}
-								{{--@foreach ($ordered_items as $menu)
-									<li data-id="{{ $menu->id }}">
-										<div class="menu-item">
-											<i class="fa fa-arrows"></i>
-											<input type="checkbox" name="remove_menu_ids[]" value="{{ $menu->id }}">
-											<a href="{{ Coanda::adminUrl('menus/view/' . $menu->id) }}">{{ $menu->name }}</a>
 
-											Order : {{ $menu->order }} /
-											Parent_id : {{ $menu->parent_id }}
-
-											<span class="pull-right">
-												<a href="{{ Coanda::adminUrl('menus/edit/' . $menu->id) }}"><i class="fa fa-pencil-square-o"></i></a>
-												<a href="{{ Coanda::adminUrl('menus/remove/' . $menu->id) }}"><i class="fa fa-minus-circle"></i></a>
-											</span>
-										</div>
-										<ol>
-											@if (count($menu->children) > 0)
-												has children
-											@endif
-										</ol>
-									</li>
-								@endforeach--}}
 							</ol>
 						</div>
 					
