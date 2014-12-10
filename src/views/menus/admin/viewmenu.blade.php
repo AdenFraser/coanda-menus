@@ -117,6 +117,8 @@
 @include('coanda-menus::menus.admin.modals.viewpage')
 @include('coanda-menus::menus.admin.modals.viewcustom')
 
+@include('coanda-menus::menus.admin.modals.remove')
+
 @section('custom-js')
 	<script src="{{ asset('packages/adenfraser/coanda-menus/js/jquery.sortable.min.js') }}"></script>
 	<script src="{{ asset('packages/adenfraser/coanda-menus/js/coanda-menus-scripts.js') }}"></script>

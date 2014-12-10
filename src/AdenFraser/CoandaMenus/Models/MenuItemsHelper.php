@@ -81,7 +81,7 @@ class MenuItemsHelper {
 					<a href="'.Coanda::adminUrl('menus/view/' . $v->id).'" data-toggle="modal" data-target=".modal-view-custom" data-remote="false">'.$v->name.'</a>
 					<span class="pull-right">
 						<a href="'.Coanda::adminUrl('menus/edit/' . $v->id).'" data-toggle="modal" data-target=".modal-edit-custom" data-remote="false"><i class="fa fa-pencil-square-o"></i></a>
-						<a href="'.Coanda::adminUrl('menus/remove/' . $v->id).'"><i class="fa fa-minus-circle"></i></a>
+						<a href="'.Coanda::adminUrl('menus/remove/' . $v->id).'" data-toggle="modal" data-target=".modal-remove" data-remote="false"><i class="fa fa-minus-circle"></i></a>
 					</span>
 				</div>
 				<ol>';
