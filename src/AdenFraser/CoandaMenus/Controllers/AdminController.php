@@ -191,6 +191,26 @@ class AdminController extends \CoandaCMS\Coanda\Controllers\BaseController {
     /**
      * @param $menu_id
      */
+    public function getAddCustom($menu_id)
+    {
+        $menu = $this->__getMenu($menu_id);
+
+        return View::make('coanda-menus::menus.admin.addcustom', [ 'menu' => $menu, 'invalid_fields' => Session::get('invalid_fields', []) ]);
+    }
+ 
+    /**
+     * @param $menu_id
+     */
+    public function getAddPage($menu_id)
+    {
+        $menu = $this->__getMenu($menu_id);
+
+        return View::make('coanda-menus::menus.admin.addpage', [ 'menu' => $menu, 'invalid_fields' => Session::get('invalid_fields', []) ]);
+    }
+    
+    /**
+     * @param $menu_id
+     */
     public function getRemoveMultiple($menu_id)
     {
         $menu = $this->__getMenu($menu_id);
