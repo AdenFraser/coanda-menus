@@ -108,6 +108,9 @@
 	</div>
 </div>
 
+@include('coanda-menus::menus.admin.modals.addpage')
+@include('coanda-menus::menus.admin.modals.addcustom')
+
 @section('custom-js')
 	<script src="{{ asset('packages/adenfraser/coanda-menus/js/jquery.sortable.min.js') }}"></script>
 	<script src="{{ asset('packages/adenfraser/coanda-menus/js/coanda-menus-scripts.js') }}"></script>
