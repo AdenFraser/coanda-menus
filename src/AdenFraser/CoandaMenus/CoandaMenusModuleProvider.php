@@ -3,6 +3,7 @@
 use Illuminate\Support\Collection;
 use Route;
 use AdenFraser\CoandaMenus\Models\Menu;
+use AdenFraser\CoandaMenus\Models\MenuItemsHelper;
 
 class CoandaMenusModuleProvider implements \CoandaCMS\Coanda\CoandaModuleProvider {
 
@@ -72,15 +73,19 @@ class CoandaMenusModuleProvider implements \CoandaCMS\Coanda\CoandaModuleProvide
 
     /**
      * @param $identifier
-     * @return object Collection of Menu items
+     * @return object Collection of Menu items in hierachy
      */
     public function get($identifier)
     {
         $menu = Menu::whereIdentifier($identifier)->first();
 
-        if ($menu)
+        if($menu)
         {
-            return $menu->items;
+            $menu_items = $menu->items()->paginate(0);
+
+            $ordered_items = new MenuItemsHelper($menu_items); 
+
+            return $ordered_items->itemArray();
         }
 
         return Collection::make([]);
