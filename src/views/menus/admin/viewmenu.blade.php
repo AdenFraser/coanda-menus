@@ -29,8 +29,8 @@
 				Add new menu item <span class="caret"></span>
 			</button>
 			<ul class="dropdown-menu" role="menu">
-				<li><a href="{{ Coanda::adminUrl('menus/add-page/' . $menu->id) }}" data-toggle="modal" data-target=".modal-add-page">Page Link</a></li>
-				<li><a href="{{ Coanda::adminUrl('menus/add-custom/' . $menu->id) }}" data-toggle="modal" data-target=".modal-add-custom">Custom Link</a></li>
+				<li><a href="{{ Coanda::adminUrl('menus/add-page/' . $menu->id) }}" data-toggle="modal" data-target=".modal-add-page" data-remote="false">Page Link</a></li>
+				<li><a href="{{ Coanda::adminUrl('menus/add-custom/' . $menu->id) }}" data-toggle="modal" data-target=".modal-add-custom" data-remote="false">Custom Link</a></li>
 			</ul>
 		</div>
 	</div>
@@ -113,6 +113,9 @@
 
 @include('coanda-menus::menus.admin.modals.editpage')
 @include('coanda-menus::menus.admin.modals.editcustom')
+
+@include('coanda-menus::menus.admin.modals.viewpage')
+@include('coanda-menus::menus.admin.modals.viewcustom')
 
 @section('custom-js')
 	<script src="{{ asset('packages/adenfraser/coanda-menus/js/jquery.sortable.min.js') }}"></script>
