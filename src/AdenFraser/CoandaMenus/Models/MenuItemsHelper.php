@@ -80,7 +80,7 @@ class MenuItemsHelper {
 					<input type="checkbox" name="remove_menu_ids[]" value="'.$v->id.'">
 					<a href="'.Coanda::adminUrl('menus/view/' . $v->id).'">'.$v->name.'</a>
 					<span class="pull-right">
-						<a href="'.Coanda::adminUrl('menus/edit/' . $v->id).'"><i class="fa fa-pencil-square-o"></i></a>
+						<a href="'.Coanda::adminUrl('menus/edit/' . $v->id).'" data-toggle="modal" data-target=".modal-edit-custom"><i class="fa fa-pencil-square-o"></i></a>
 						<a href="'.Coanda::adminUrl('menus/remove/' . $v->id).'"><i class="fa fa-minus-circle"></i></a>
 					</span>
 				</div>
