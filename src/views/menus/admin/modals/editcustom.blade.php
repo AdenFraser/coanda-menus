@@ -6,7 +6,7 @@
 					<span aria-hidden="true">×</span>
 					<span class="sr-only">Close</span>
 				</button>
-				<p class="modal-title">Add custom link to Menu</p>
+				<p class="modal-title">Edit custom link in Menu</p>
 			</div>
 			<div class="modal-body">
 				
