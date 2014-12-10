@@ -111,6 +111,9 @@
 @include('coanda-menus::menus.admin.modals.addpage')
 @include('coanda-menus::menus.admin.modals.addcustom')
 
+@include('coanda-menus::menus.admin.modals.editpage')
+@include('coanda-menus::menus.admin.modals.editcustom')
+
 @section('custom-js')
 	<script src="{{ asset('packages/adenfraser/coanda-menus/js/jquery.sortable.min.js') }}"></script>
 	<script src="{{ asset('packages/adenfraser/coanda-menus/js/coanda-menus-scripts.js') }}"></script>
