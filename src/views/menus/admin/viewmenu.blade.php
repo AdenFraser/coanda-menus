@@ -29,8 +29,8 @@
 				Add new menu item <span class="caret"></span>
 			</button>
 			<ul class="dropdown-menu" role="menu">
-				<li><a href="#" data-toggle="modal" data-target=".modal-page">Page Link</a></li>
-				<li><a href="#" data-toggle="modal" data-target=".modal-custom">Custom Link</a></li>
+				<li><a href="{{ Coanda::adminUrl('menus/addpage/' . $menu->id) }}" data-toggle="modal" data-target=".modal-page">Page Link</a></li>
+				<li><a href="{{ Coanda::adminUrl('menus/addcustom/' . $menu->id) }}" data-toggle="modal" data-target=".modal-custom">Custom Link</a></li>
 			</ul>
 		</div>
 	</div>
