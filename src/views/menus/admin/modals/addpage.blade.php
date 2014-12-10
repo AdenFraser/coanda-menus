@@ -9,6 +9,15 @@
 				<p class="modal-title">Add Page to Menu</p>
 			</div>
 			<div class="modal-body">
+
+				<div class="row">
+					<div class="col-md-12">		
+						<div class="form-group">
+							<label class="control-label" for="name">Name</label>
+		                    <input type="text" class="form-control" id="name" name="name" value="">
+						</div>
+					</div>
+				</div>
 				
 				<div class="form-group">
 					<div class="input-group">
