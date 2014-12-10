@@ -139,7 +139,7 @@ class AdminController extends \CoandaCMS\Coanda\Controllers\BaseController {
     {
         $menu = $this->__getMenu($menu_id);
 
-        $menu_items = $menu->items()->paginate(0);
+        $menu_items = $menu->items()->paginate(100);
 
         $ordered_items = new MenuItemsHelper($menu_items); 
 
