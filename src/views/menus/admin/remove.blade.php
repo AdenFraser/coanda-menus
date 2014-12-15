@@ -56,6 +56,7 @@
                         @else
 
                         	@set('page', Coanda::pages()->getPage($menu_item->page_id))
+                        	@if ($page)
 	                        <tr>
 	                            <th>Page</th>
 	                            <td>
@@ -68,6 +69,16 @@
 									</div>
 								</td>
 	                        </tr>
+	                        @else 
+	                        <tr>
+	                            <th>Page</th>
+	                            <td>
+									<div class="form-group">
+										<label class="control-label" for="preview">Page no longer exists!</label>
+									</div>
+								</td>
+	                        </tr>
+							@endif
 
                         @endif
 
