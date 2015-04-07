@@ -1,18 +1,18 @@
 <?php namespace AdenFraser\CoandaMenus\Models;
 
-use Eloquent;
 use Coanda;
 use CoandaCMS\Coanda\Exceptions\ValidationException;
+use Eloquent;
 
-class MenuItem extends Eloquent {
-
+class MenuItem extends Eloquent
+{
     /**
      * @var array
      */
     protected $fillable = [
         'name',
         'page_id',
-        'link'
+        'link',
     ];
 
     /**
@@ -32,24 +32,21 @@ class MenuItem extends Eloquent {
      */
     public function link()
     {
-        if($this->page_id)
-        {
+        if ($this->page_id) {
             return $this->pageLink($this->page_id);
-        } 
-        else
-        {
+        } else {
             return $this->link;
         }
     }
 
     /**
      * @param $page_id
+     *
      * @return string
      */
     public static function pageLink($page_id)
     {
-        if($page = Coanda::pages()->getPage($page_id))
-        {
+        if ($page = Coanda::pages()->getPage($page_id)) {
             return url($page->slug);
         }
 
@@ -58,10 +55,11 @@ class MenuItem extends Eloquent {
 
     /**
      * Updates an individual menu items order in the database,
-     * before proceeding to update any children
+     * before proceeding to update any children.
+     *
      * @param integer $new_order
      * @param integer $parent_id
-     * @param object $item
+     * @param object  $item
      */
     public function updateItemOrder($new_order, $parent_id, $item)
     {
@@ -69,8 +67,7 @@ class MenuItem extends Eloquent {
         $this->parent_id = $parent_id;
         $this->save();
 
-        if(count($item->children) > 0 && !empty($item->children[0])) 
-        {
+        if (count($item->children) > 0 && !empty($item->children[0])) {
             Menu::updateOrder($item->children[0], $item->id);
         }
     }
@@ -78,13 +75,14 @@ class MenuItem extends Eloquent {
     /**
      * @param $menu_id
      * @param $data
+     *
      * @return MenuItem
      */
     public static function validateAndCreate($menu_id, $data)
     {
         $data = MenuItem::validateInput($data);
 
-        $item = new MenuItem;
+        $item = new MenuItem();
         $item->name = $data['name'];
         $item->link = isset($data['link']) ? $data['link'] : false;
         $item->page_id = isset($data['page_id']) ? $data['page_id'] : false;
@@ -112,32 +110,30 @@ class MenuItem extends Eloquent {
 
         $this->save();
     }
-    
+
     /**
      * @param $data
-     * @return array
+     *
      * @throws ValidationException
+     *
+     * @return array
      */
     private static function validateInput($data)
     {
         $invalid_fields = [];
 
-        if (!isset($data['name']) || $data['name'] == '')
-        {
+        if (!isset($data['name']) || $data['name'] == '') {
             $invalid_fields['name'] = 'Please enter a name';
         }
 
-        if ( (!isset($data['link']) || $data['link'] == '') && (!isset($data['page_id']) || $data['page_id'] == '') )
-        {
+        if ((!isset($data['link']) || $data['link'] == '') && (!isset($data['page_id']) || $data['page_id'] == '')) {
             $invalid_fields['page_id'] = 'Please select either a page or define a custom link';
         }
 
-        if (count($invalid_fields) > 0)
-        {
+        if (count($invalid_fields) > 0) {
             throw new ValidationException($invalid_fields);
         }
 
         return $data;
     }
-
 }

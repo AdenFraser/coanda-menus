@@ -1,11 +1,11 @@
 <?php namespace AdenFraser\CoandaMenus\Models;
 
-use Eloquent;
 use CoandaCMS\Coanda\Exceptions\ValidationException;
 use CoandaCMS\Coanda\Urls\Slugifier;
+use Eloquent;
 
-class Menu extends Eloquent {
-
+class Menu extends Eloquent
+{
     /**
      * @var array
      */
@@ -35,6 +35,7 @@ class Menu extends Eloquent {
 
     /**
      * @param $data
+     *
      * @return object
      */
     public static function validateAndCreate($data)
@@ -58,17 +59,15 @@ class Menu extends Eloquent {
     }
 
     /**
-     * @param array $ordering $ordering An array of menu item objects to order and save
-     * @param integer $parent_id 
+     * @param array   $ordering  $ordering An array of menu item objects to order and save
+     * @param integer $parent_id
      */
     public static function updateOrder($ordering, $parent_id)
     {
-        foreach ($ordering as $new_order => $item)
-        {
+        foreach ($ordering as $new_order => $item) {
             $menuitem = MenuItem::find($item->id);
-            
-            if ($menuitem)
-            {
+
+            if ($menuitem) {
                 $menuitem->updateItemOrder($new_order, $parent_id, $item);
             }
         }
@@ -76,28 +75,25 @@ class Menu extends Eloquent {
 
     /**
      * @param $data
+     *
      * @throws ValidationException
      */
     private static function validateInput($data)
     {
         $invalid_fields = [];
 
-        if (!isset($data['name']) || $data['name'] == '')
-        {
+        if (!isset($data['name']) || $data['name'] == '') {
             $invalid_fields['name'] = 'Please enter a name';
         }
 
-        if (!isset($data['identifier']) || $data['identifier'] == '')
-        {
+        if (!isset($data['identifier']) || $data['identifier'] == '') {
             $data['identifier'] = Slugifier::convert($data['name']);
         }
 
-        if (count($invalid_fields) > 0)
-        {
+        if (count($invalid_fields) > 0) {
             throw new ValidationException($invalid_fields);
         }
 
         return $data;
     }
-
 }

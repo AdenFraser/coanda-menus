@@ -1,12 +1,12 @@
 <?php namespace AdenFraser\CoandaMenus;
 
-use Illuminate\Support\Collection;
-use Route;
 use AdenFraser\CoandaMenus\Models\Menu;
 use AdenFraser\CoandaMenus\Models\MenuItemsHelper;
+use Illuminate\Support\Collection;
+use Route;
 
-class CoandaMenusModuleProvider implements \CoandaCMS\Coanda\CoandaModuleProvider {
-
+class CoandaMenusModuleProvider implements \CoandaCMS\Coanda\CoandaModuleProvider
+{
     /**
      * @var string
      */
@@ -17,8 +17,8 @@ class CoandaMenusModuleProvider implements \CoandaCMS\Coanda\CoandaModuleProvide
         // Add the permissions
         $permissions = [
             'manage' => [
-                'name' => 'Manage',
-                'options' => []
+                'name'    => 'Manage',
+                'options' => [],
             ],
         ];
 
@@ -43,6 +43,7 @@ class CoandaMenusModuleProvider implements \CoandaCMS\Coanda\CoandaModuleProvide
 
     /**
      * @param \Illuminate\Foundation\Application $app
+     *
      * @return mixed
      */
     public function bindings(\Illuminate\Foundation\Application $app)
@@ -53,8 +54,10 @@ class CoandaMenusModuleProvider implements \CoandaCMS\Coanda\CoandaModuleProvide
      * @param $permission
      * @param $parameters
      * @param $user_permissions
-     * @return boolean|null
+     *
      * @throws PermissionDenied
+     *
+     * @return boolean|null
      */
     public function checkAccess($permission, $parameters, $user_permissions)
     {
@@ -65,25 +68,24 @@ class CoandaMenusModuleProvider implements \CoandaCMS\Coanda\CoandaModuleProvide
      */
     public function buildAdminMenu($coanda)
     {
-        if ($coanda->canViewModule('menus'))
-        {
+        if ($coanda->canViewModule('menus')) {
             $coanda->addMenuItem('menus', 'Menus');
         }
     }
 
     /**
      * @param $identifier
+     *
      * @return object Collection of Menu items in hierachy
      */
     public function get($identifier)
     {
         $menu = Menu::whereIdentifier($identifier)->first();
 
-        if($menu)
-        {
+        if ($menu) {
             $menu_items = $menu->items()->take(100)->get();
 
-            $ordered_items = new MenuItemsHelper($menu_items); 
+            $ordered_items = new MenuItemsHelper($menu_items);
 
             return $ordered_items->itemArray();
         }
@@ -100,7 +102,7 @@ class CoandaMenusModuleProvider implements \CoandaCMS\Coanda\CoandaModuleProvide
 
         $menu_items = $menu->items()->take(100)->get();
 
-        $ordered_items = new MenuItemsHelper($menu_items); 
+        $ordered_items = new MenuItemsHelper($menu_items);
 
         return View::make('coanda-menus::menus.default.output_menu', ['menu' => $menu, 'menus' => $menu_items, 'ordered_items' => $ordered_items])->render();
     }
