@@ -81,7 +81,7 @@ class CoandaMenusModuleProvider implements \CoandaCMS\Coanda\CoandaModuleProvide
 
         if($menu)
         {
-            $menu_items = $menu->items()->paginate(100);
+            $menu_items = $menu->items()->take(100)->get();
 
             $ordered_items = new MenuItemsHelper($menu_items); 
 
@@ -98,7 +98,7 @@ class CoandaMenusModuleProvider implements \CoandaCMS\Coanda\CoandaModuleProvide
     {
         $menu = Menu::find($menu_id);
 
-        $menu_items = $menu->items()->paginate(0);
+        $menu_items = $menu->items()->take(100)->get();
 
         $ordered_items = new MenuItemsHelper($menu_items); 
 
